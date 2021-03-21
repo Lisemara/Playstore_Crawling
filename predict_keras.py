@@ -27,11 +27,11 @@ text3 = """
 """
 
 # Keras 모델 정의하고 가중치 데이터 읽어 들이기 
-loaded_model = load_model('best_model.h5')
+loaded_model = load_model('./data/best_model.h5')
 okt = Okt()
-with open('tokenizer.pickle', 'rb') as handle:
+with open('./data/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
-with open('stopwords.pickle', 'rb') as f:
+with open('./data/stopwords.pickle', 'rb') as f:
     stopwords = pickle.load(f) 
 max_len = 80
 
@@ -39,13 +39,6 @@ max_len = 80
 # 텍스트 지정해서 판별하기 
 def check_review(text):
     # !! 모델에서 max_len 바꿀시 꼭 바꿀것 !!
-
-    okt = Okt()
-    with open('tokenizer.pickle', 'rb') as handle:
-        tokenizer = pickle.load(handle)
-    with open('stopwords.pickle', 'rb') as f:
-        stopwords = pickle.load(f) 
-
     # data = protext.process(text)
 
     data = okt.morphs(text) # 토큰화
