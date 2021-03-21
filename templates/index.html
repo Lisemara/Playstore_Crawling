@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         
-        <title>4 Group</title>
+        <title>플레이스토어 리뷰 판별기</title>
 
         <!-- load CSS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" />
@@ -29,8 +29,9 @@
             <div class="tm-top-container col-md-9">
                 <!-- Site header -->
                 <header class="tm-site-header-box tm-bg-dark">
-                    <h1 class="tm-site-title">Game review 크롤링</h1>
-                    <p class="mb-0 tm-site-subtitle">구글 플레이 스토어 게임리뷰 크롤링</p>
+                    <h1 class="tm-site-title">플레이스토어 리뷰 판별기</h1>
+                    <p class="mb-0 tm-site-subtitle">리뷰를 넣으면 긍정/부정 판별<br>가장 비슷한 리뷰 5개를 가져옵니다.</p>
+                    <input id='go_topic' type='button' onclick='newPage()' value='토픽모델링 보기' />
                 </header>
             </div>
 
@@ -79,8 +80,13 @@
                     }).then((data) => {
                         // 결과를 화면에 출력하기 
                         result.innerHTML =
-                            "<span style='font-size:1em'>(" + data["per"]+ '%' + ")</span>" +
-                            "<span style='font-size:1em'>(" + "판정 결과: "+ data["predict"] + ")</span>"
+                            "<span style='font-size:1em'>(" + "판정 결과: "+ data["predict"] + ")</span>"+    
+                            "<span style='font-size:1em'>(" + data["per"]+ '%' + ")</span><br>" +                            
+                            "<span style='font-size:1em'>(" + "유사 리뷰1: "+ data["review1"] + ")</span><br>" +
+                            "<span style='font-size:1em'>(" + "유사 리뷰2: "+ data["review2"] + ")</span><br>" +
+                            "<span style='font-size:1em'>(" + "유사 리뷰3: "+ data["review3"] + ")</span><br>" +
+                            "<span style='font-size:1em'>(" + "유사 리뷰4: "+ data["review4"] + ")</span><br>" +
+                            "<span style='font-size:1em'>(" + "유사 리뷰5: "+ data["review5"] + ")</span>"
                     })
                 }
             }
@@ -92,6 +98,11 @@
         <script src="{{ url_for('static', filename='slick/slick.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
 
+        <script>
+            function newPage()  {
+                window.location.href = "{{ url_for('static', filename='topic.html') }}"
+            }
+        </script>
 
         <div class="tm-bottom-container">
             <!-- Barcode -->
@@ -219,7 +230,7 @@
             #result {
                 padding: 10px;
                 font-size: 1.2em;
-                color: red;
+                color: #fffff0;
             }
             
             #q {
