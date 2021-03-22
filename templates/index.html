@@ -31,7 +31,7 @@
                 <header class="tm-site-header-box tm-bg-dark">
                     <h1 class="tm-site-title">플레이스토어 리뷰 판별기</h1>
                     <p class="mb-0 tm-site-subtitle">리뷰를 넣으면 긍정/부정 판별<br>가장 비슷한 리뷰 5개를 가져옵니다.</p>
-                    <input id='go_topic' type='button' onclick='newPage()' value='토픽모델링 보기' />
+                    <input id='go_topic' type='button' class="btn btn-info" onclick='newPage()' value='토픽모델링 보기' />
                 </header>
             </div>
 
@@ -43,15 +43,15 @@
                         <div class="tm-content">
                             <!-- Section 0 Introduction -->
                             <section class="tm-section tm-section-0">
-                                <h2 class="tm-section-title mb-3 font-weight-bold">
+                                <h2 class="tm-section-title mb-3 font-weight-bold" style="background-color : #000000; opacity: 0.9; color : #cdffd0; ">
                                     리뷰를 넣어주세요.
                                 </h2>
 
 
                                 <div class="tm-textbox tm-bg-dark">
-                                    <textarea id="q" rows="5" cols="55" autofocus style="background-color : #000000; opacity: 0.7; color : #cdffd0; "  ></textarea>
+                                    <textarea id="q" rows="5" cols="55" autofocus style="background-color : #000000; opacity: 0.9; color : #cdffd0; "  ></textarea>
                                     <br>
-                                    <button id="qButton" >클릭</button>
+                                    <button id="Button" class="btn btn-primary">클릭</button>
                                     <div id="result"></div>
                                 </div>
 
@@ -67,10 +67,10 @@
             const qs = (q) => document.querySelector(q)
             window.onload = () => {
                 const q = qs('#q')
-                const qButton = qs('#qButton')
+                const Button = qs('#Button')
                 const result = qs('#result')
                 // 판정 버튼을 눌렀을 때 
-                qButton.onclick = () => {
+                Button.onclick = () => {
                     result.innerHTML = "..."
                     // URL 생성하기
                     const api = "/api?q=" + encodeURIComponent(q.value)
@@ -106,18 +106,16 @@
 
         <div class="tm-bottom-container">
             <!-- Barcode -->
-            <div class="tm-barcode-box">
-                <img src="static/img/bar-code.jpg" alt="Bar code" />
-            </div>
+            
 
             <!-- Footer -->
             <footer>
-                || 2021. 03. 19 Name.4Group : 이준호, 이승수, 조영모, 최인서 || 
-                        
-                Code : <a rel="nofollow" href="https://www.naver.com">Click</a> ||
+
             
             </footer>
         </div>
+
+   
         <script>
             let slickInitDone = false;
             let previousImageId = 0,
@@ -136,18 +134,19 @@
                 $(".tm-section").fadeOut(0);
                 $(".tm-section-0").fadeIn();
             
+                
                 // Set Background images
                 // https://www.jqueryscript.net/slideshow/Simple-jQuery-Background-Image-Slideshow-with-Fade-Transitions-Background-Cycle.html
                 bgCycle = $("body").backgroundCycle({
-                    imageUrls: [
-                        "static/img/photo-02.jpg",
-                        "static/img/photo-03.jpg",
-                        "static/img/photo-04.jpg",
-                        "static/img/photo-05.jpg"
-                    ],
-                    fadeSpeed: 2000,
-                    duration: -1,
-                    backgroundSize: SCALING_MODE_COVER
+                   imageUrls: [
+                      "static/img/bgimage.png",
+                       "static/img/photo-03.jpg",
+                       "static/img/photo-04.jpg",
+                       "static/img/photo-05.jpg"
+                   ],
+                   fadeSpeed: 2000,
+                   duration: -1,
+                   backgroundSize: SCALING_MODE_COVER
                 });
 
                 // window resize
