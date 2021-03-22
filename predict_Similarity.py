@@ -11,10 +11,20 @@ text1 = """
 def similar_review(text):
     # 데이터를 불러오면서 리뷰 열만 가져오기
     data = pd.read_csv('./data/similar_data.csv', encoding='ANSI')
-    data_review = data.REVIEW
     
+    # input받은 text를 review 변수로 재지정
     review = text
-    data_review.loc[len(data_review)] = review
+
+    # review를 data에 넣기
+    data.loc[len(data)] = review
+
+    # 중복값 처리 및 index 초기화
+    data.drop_duplicates('REVIEW', keep="first", inplace=True)
+    data.reset_index(inplace=True)
+
+    # review 열만 가져와서 series로 만들기
+    data_review = data['REVIEW']
+
     tfidf = TfidfVectorizer()
     # 리뷰 데이터에 대해서 tf-idf 수행
     tfidf_matrix = tfidf.fit_transform(data_review)
